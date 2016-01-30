@@ -25,7 +25,7 @@ public class Sound : MonoBehaviour {
 
 	void enemyCountChange()
 	{
-		enemyCountPa.setValue ();
+		enemyCountPa.setValue(1);
 	}
 	
 	// Update is called once per frame
