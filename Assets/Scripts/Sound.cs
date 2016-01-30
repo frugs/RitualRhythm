@@ -1,44 +1,65 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Sound : MonoBehaviour {
 
 	private const string music = "event:/Music/Beat";
 	private const string enemyCount = "Enemy Count";
+	private const string punch = "event:/SFX/Vox/A/Strike";
 
-	private const int BEATS_PER_MINUTE = 260;
-	private const int BEAT_MILLIS = 60000 / BEATS_PER_MINUTE;
-	private const int ALLOWED_OFFSET_MILLIS = 50;
+	public const int BEATS_PER_MINUTE = 130;
+	public const int BEAT_MILLIS = 60000 / BEATS_PER_MINUTE;
+	private const int ALLOWED_OFFSET_MILLIS = 20;
 	private const int USER_LAG_MILLIS = 50;
 
 	private FMOD.Studio.EventInstance musicEv;
+	private FMOD.Studio.EventInstance punchEv;
 	private FMOD.Studio.ParameterInstance enemyCountPa;
+	private FMOD.Studio.EVENT_CALLBACK cb;
 
-	int count;
+	private float songTime;
+	private float previousFrameTime;
+	private float lastReportedPlayPosition;
 
 	// Use this for initialization
 	void Start () {
 
 		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
+		punchEv = FMODUnity.RuntimeManager.CreateInstance (punch);
 		musicEv.getParameter (enemyCount, out enemyCountPa);
+		cb = new FMOD.Studio.EVENT_CALLBACK(StudioEventCallback);
+		musicEv.setCallback(cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT);
 
+		previousFrameTime = Time.time;
+		lastReportedPlayPosition = 0;
 		musicEv.start ();
+		enemyCountChange (5);
 
+	}
+
+	public FMOD.RESULT StudioEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
+		Debug.Log ("It works!!!");
+		playPunch ();
+		return FMOD.RESULT.OK;
+	}
+	
+	void Update() {
+		songTime += Time.time - previousFrameTime;
+		previousFrameTime = Time.time;
+		float newReportedPosition = (float)getFMODTime () / (float)1000;
+		if (newReportedPosition > lastReportedPlayPosition) {
+			songTime = (songTime + newReportedPosition) / 2;
+			lastReportedPlayPosition = newReportedPosition;
+		} else if (newReportedPosition < lastReportedPlayPosition) {
+
+		}
+//		Debug.Log (songTime);
 	}
 
 	void enemyCountChange(int count)
 	{
 		enemyCountPa.setValue (count);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		count++;
-		if (count % 300 == 0) {
-			float thing;
-			enemyCountPa.getValue(out thing);
-			enemyCountChange((int)thing + 1);
-		}
 	}
 
 	void OnGUI() {
@@ -53,7 +74,21 @@ public class Sound : MonoBehaviour {
 		}
 	}
 
-	bool isOnBeat (out int offset)
+	public void playPunch() {
+		punchEv.start();
+	}
+
+	private int getFMODTime() {
+		int val;
+		musicEv.getTimelinePosition (out val);
+		return val;
+	}
+
+	public int getSongTime() {
+		return (int)(songTime * 1000);
+	}
+
+	public bool isOnBeat (out int offset)
 	{
 		int currMillis;
 		musicEv.getTimelinePosition (out currMillis);
