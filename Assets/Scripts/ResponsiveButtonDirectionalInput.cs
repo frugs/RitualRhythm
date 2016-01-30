@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace RitualRhythm
@@ -15,23 +13,27 @@ namespace RitualRhythm
         private readonly IList<float> _horizontalInputs = new List<float>();
         private readonly IList<float> _verticalInputs = new List<float>();
 
-        public ResponsiveButtonDirectionalInput(String up, String down, String left, String right) {
+        public ResponsiveButtonDirectionalInput(string up, string down, string left, string right) {
             _up = up;
             _down = down;
             _left = left;
             _right = right;
         }
 
-        public float GetHorizontal() {
-            return _horizontalInputs.Count > 0 
-                ? _horizontalInputs[_horizontalInputs.Count - 1]
-                : 0;
+        public float Horizontal {
+            get {
+                return _horizontalInputs.Count > 0
+                        ? _horizontalInputs[_horizontalInputs.Count - 1]
+                        : 0;
+            }
         }
 
-        public float GetVertical() {
-            return _verticalInputs.Count > 0 ? 
-                _verticalInputs[_verticalInputs.Count - 1]
-                : 0;
+        public float Vertical {
+            get {
+                return _verticalInputs.Count > 0
+                        ? _verticalInputs[_verticalInputs.Count - 1]
+                        : 0;
+            }
         }
 
         public void Update() {
