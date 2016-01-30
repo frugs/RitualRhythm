@@ -97,6 +97,8 @@ GameObject:
   - 92: {fileID: 445616849}
   - 124: {fileID: 445616848}
   - 81: {fileID: 445616847}
+  - 114: {fileID: 445616853}
+  - 114: {fileID: 445616852}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -110,7 +112,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 445616846}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &445616848
 Behaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +173,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &445616852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 445616846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd9d9085ea0b469fa7d8643014a9112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: event:/Music/Beat
+--- !u!114 &445616853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 445616846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546307689
 GameObject:
   m_ObjectHideFlags: 0
