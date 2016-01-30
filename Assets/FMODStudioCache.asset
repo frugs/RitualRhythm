@@ -13,9 +13,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 11439400}
-  EditorEvents: []
+  EditorEvents:
+  - {fileID: 11472182}
   MasterBankRef: {fileID: 11439400}
-  stringsBankWriteTime: 635897053918722096
+  stringsBankWriteTime: 635897684769919368
+--- !u!114 &11424052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Boss
+  Min: 0
+  Max: 1
 --- !u!114 &11439400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,7 +43,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:/Users/frugs_000/Projects/RitualRhythm/FMOD Audio/Desktop\Master Bank.bank
-  lastModified: 635897053918702210
+  lastModified: 635897684769909357
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &11472182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Beat
+  guid: 91a36c0f9712d54f96f92855b43a2919
+  Banks:
+  - {fileID: 11439400}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 11496054}
+  - {fileID: 11424052}
+  MinDistance: 0
+  MaxDistance: 0
+--- !u!114 &11496054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Enemy Count
+  Min: 0
+  Max: 5
