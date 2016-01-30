@@ -14,10 +14,9 @@ public class Sound : MonoBehaviour {
 	private const int USER_LAG_MILLIS = 50;
 
 	private FMOD.Studio.EventInstance musicEv;
-	private FMOD.Studio.EventInstance punchEv;
 	private FMOD.Studio.ParameterInstance enemyCountPa;
 	private FMOD.Studio.EVENT_CALLBACK cb;
-
+	
 	private float songTime;
 	private float previousFrameTime;
 	private float lastReportedPlayPosition;
@@ -26,11 +25,11 @@ public class Sound : MonoBehaviour {
 	void Start () {
 
 		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
-		punchEv = FMODUnity.RuntimeManager.CreateInstance (punch);
 		musicEv.getParameter (enemyCount, out enemyCountPa);
 		cb = new FMOD.Studio.EVENT_CALLBACK(StudioEventCallback);
 		musicEv.setCallback(cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
 
+		
 		previousFrameTime = Time.time;
 		lastReportedPlayPosition = 0;
 		musicEv.start ();
@@ -43,6 +42,16 @@ public class Sound : MonoBehaviour {
 		playPunch ();
 		return FMOD.RESULT.OK;
 	}
+	
+//	public void addBeatCallback(Delegate callback) {
+//		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(callback);
+//		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT);
+//	}
+//
+//	public void addMarkerCallback(Delegate callback) {
+//		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(callback);
+//		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+//	}
 	
 	void Update() {
 		songTime += Time.time - previousFrameTime;
@@ -75,7 +84,7 @@ public class Sound : MonoBehaviour {
 	}
 
 	public void playPunch() {
-		punchEv.start();
+		FMODUnity.RuntimeManager.PlayOneShot (punch);
 	}
 
 	private int getFMODTime() {
