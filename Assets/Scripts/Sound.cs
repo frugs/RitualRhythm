@@ -29,7 +29,7 @@ public class Sound : MonoBehaviour {
 		punchEv = FMODUnity.RuntimeManager.CreateInstance (punch);
 		musicEv.getParameter (enemyCount, out enemyCountPa);
 		cb = new FMOD.Studio.EVENT_CALLBACK(StudioEventCallback);
-		musicEv.setCallback(cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT);
+		musicEv.setCallback(cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
 
 		previousFrameTime = Time.time;
 		lastReportedPlayPosition = 0;
