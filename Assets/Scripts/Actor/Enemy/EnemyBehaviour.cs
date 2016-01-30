@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace RitualRhythm {
+namespace RitualRhythm.Actor.Enemy {
     public class EnemyBehaviour : MonoBehaviour {
 
         private const float HurtAnimationLength = 0.5f;
@@ -10,9 +10,11 @@ namespace RitualRhythm {
         
         private bool _hurt;
         private IEnumerator _hurtAnimRoutine = EnumeratorUtils.EmptyEnumerator();
+        private Color _originalColor;
 
         public void Start () {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _originalColor = _spriteRenderer.color;
         }
 	
         public void Update () {
@@ -29,20 +31,19 @@ namespace RitualRhythm {
 
         private IEnumerator PlayHurtAnimation() {
             var t = 0f;
-            var originalColor = _spriteRenderer.color;
             while (t < HurtAnimationLength / 2) {
                 t += Time.deltaTime;
-                _spriteRenderer.color = Color.Lerp(originalColor, Color.red, t);
+                _spriteRenderer.color = Color.Lerp(_originalColor, Color.red, t);
                 yield return null;
             }
             _spriteRenderer.color = Color.red;
 
             while (t < HurtAnimationLength) {
                 t += Time.deltaTime;
-                _spriteRenderer.color = Color.Lerp(Color.red, originalColor, t);
+                _spriteRenderer.color = Color.Lerp(Color.red, _originalColor, t);
                 yield return null;
             }
-            _spriteRenderer.color = originalColor;
+            _spriteRenderer.color = _originalColor;
         }
     }
 }
