@@ -16,7 +16,6 @@ public class BeatState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	public bool isInBeat() {
@@ -33,13 +32,18 @@ public class BeatState : MonoBehaviour {
 			Marshal.Copy(namePtr, buffer, 0, buffer.Length);
 			string name = Encoding.UTF8.GetString(buffer, 0, nameLen);
 			if (name == "BeatIn") {
-				inBeat = true;
+				StartCoroutine(setInBeat(true));
 				Debug.Log("In");
 			} else if (name == "BeatOut") {
-				inBeat = false;
+				StartCoroutine(setInBeat(false));
 				Debug.Log("Out");
 			}
 		}
 		return true;
+	}
+
+	IEnumerator setInBeat(bool inBeat) {
+		yield return new WaitForSeconds (0.05f);
+		this.inBeat = inBeat;
 	}
 }

@@ -3,9 +3,11 @@ using UnityEngine;
 
 namespace RitualRhythm.Actor.Enemy {
     public class EnemyBehaviour : MonoBehaviour {
-        private const float HurtAnimationLength = 0.25f;
+        private const float HurtAnimationLength = 0.1f;
 
         private SpriteRenderer _spriteRenderer;
+
+		public BeatState beatState;
         
         private bool _hurt;
         private IEnumerator _hurtAnimRoutine = EnumeratorUtils.EmptyEnumerator();
@@ -17,10 +19,13 @@ namespace RitualRhythm.Actor.Enemy {
         }
 	
         public void Update () {
-            if (_hurt) {
-                _hurtAnimRoutine = PlayHurtAnimation();
-                _hurt = false;
-            }
+			if (beatState.isInBeat ()) {
+				_hurtAnimRoutine = PlayHurtAnimation();
+			}
+//            if (_hurt) {
+//                _hurtAnimRoutine = PlayHurtAnimation();
+//                _hurt = false;
+//            }
             _hurtAnimRoutine.MoveNext();
         }
 
