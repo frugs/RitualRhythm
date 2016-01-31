@@ -5,6 +5,7 @@ namespace RitualRhythm.Actor {
         void PositionUpdated(Vector2 position);
 
         void LookDirectionUpdated(Vector2 lookDirection);
-        void AttackStateUpdated(bool isAttacking);
+
+        void AnimationStateUpdated(ActorAnimationState state);
     }
 }

@@ -35,7 +35,7 @@ namespace RitualRhythm.Actor {
             if (_timeElapsed < AttackDuration) {
                 return this;
             } else {
-                actorModel.IsAttacking = false;
+                actorModel.AnimationState = ActorAnimationState.Walking;
                 return new ActorWalkState();
             }
         }

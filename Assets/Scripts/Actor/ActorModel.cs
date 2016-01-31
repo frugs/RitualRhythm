@@ -13,7 +13,7 @@ namespace RitualRhythm.Actor {
         private Vector2 _position;
         private Vector2 _lookDirection = Vector2.right;
 
-        private bool _isAttacking;
+        private ActorAnimationState _animationState;
 
         private const float MinY = -5.5f;
         private const float MaxY = -2f;
@@ -40,12 +40,12 @@ namespace RitualRhythm.Actor {
             }
         }
 
-        public bool IsAttacking {
-            get { return _isAttacking; }
+        public ActorAnimationState AnimationState {
+            get { return _animationState; }
             set {
-                _isAttacking = value;
+                _animationState = value;
                 foreach (var listener in _listeners) {
-                    listener.AttackStateUpdated(value);
+                    listener.AnimationStateUpdated(_animationState);
                 }
             }
         }

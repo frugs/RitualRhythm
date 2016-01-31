@@ -29,6 +29,18 @@ namespace RitualRhythm.Actor.Player {
             }
 
             base.Update();
+
+            var animator = GetComponent<Animator>();
+
+            animator.SetFloat(
+                "Speed", 
+                Mathf.Abs(_directionalInput.Horizontal) + Mathf.Abs(_directionalInput.Vertical));
+        }
+
+        public override void AnimationStateUpdated(ActorAnimationState state) {
+            if (state == ActorAnimationState.Attacking) {
+                GetComponent<Animator>().SetTrigger("Attack");
+            }
         }
     }
 }
