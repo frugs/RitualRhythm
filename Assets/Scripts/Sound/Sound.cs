@@ -43,7 +43,7 @@ public class Sound : MonoBehaviour {
 		musicEv.start ();
 		enemyCountChange (5);
 		statePa.setValue (1);
-		speedPa.setValue (1);
+		speedPa.setValue (3);
 		beatExecutor = GetComponent<BeatExecutor> ();
 		cb = new FMOD.Studio.EVENT_CALLBACK(onBeatWrapper);
 		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
