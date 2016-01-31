@@ -9,7 +9,6 @@ namespace RitualRhythm.Actor {
         private readonly IList<IActorModelListener> _listeners =
             new List<IActorModelListener>();
 
-		private BeatState _beatState;
         private Vector2 _position;
         private Vector2 _lookDirection = Vector2.right;
 
@@ -50,9 +49,8 @@ namespace RitualRhythm.Actor {
             }
         }
 
-        public ActorModel(Vector2 position, BeatState beatState) {
+        public ActorModel(Vector2 position) {
             _position = position;
-			_beatState = beatState;
         }
 
         public virtual void Jump() {
@@ -68,12 +66,7 @@ namespace RitualRhythm.Actor {
         }
 
         public virtual void Attack() {
-			if (_beatState.isInBeat ()) {
-				_actorState = _actorState.Attack (this);
-			} else {
-				Debug.Log("Not allowed");
-				GetHurt();
-			}
+            _actorState = _actorState.Attack(this);
         }
 
         public virtual void GetHurt() {

@@ -27,7 +27,7 @@ namespace RitualRhythm.Actor.Player {
         public ActorModel ActorModel { get; private set; }
 
         public virtual void Start() {
-            ActorModel = new ActorModel(transform.position, beatState);
+            ActorModel = new ActorModel(transform.position);
             ActorModel.RegisterListener(this);
         }
 
@@ -43,7 +43,12 @@ namespace RitualRhythm.Actor.Player {
                 _directionalInput.Vertical * PlayerVelocity * Time.deltaTime));
 
             if (Input.GetButtonDown("Fire1")) {
-                ActorModel.Attack();
+                if (beatState.isInBeat()) {
+                    ActorModel.Attack();
+                }  else {
+                    Debug.Log("Not allowed");
+                    ActorModel.GetHurt();
+                }
             }
 
 			handleHurt();

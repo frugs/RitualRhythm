@@ -12,7 +12,7 @@ namespace RitualRhythm.Actor.Enemy {
         private bool _hurt;
         private IEnumerator _hurtAnimRoutine = EnumeratorUtils.EmptyEnumerator();
         private Color _originalColor;
-        private EnemyModel _enemyModel;
+        private ActorModel _enemyModel;
         private EnemyAiController _aiController;
 
         public PlayerBehaviour PlayerBehaviour;
@@ -27,7 +27,7 @@ namespace RitualRhythm.Actor.Enemy {
         public void Start () {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalColor = _spriteRenderer.color;
-            _enemyModel = new EnemyModel(transform.position, BeatState, BeatExecutor);
+            _enemyModel = new ActorModel(transform.position);
             _enemyModel.RegisterListener(this);
 
             _aiController = new EnemyAiController(_enemyModel, 1f, 3f);

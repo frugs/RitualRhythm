@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa62b439d2f31646a785be0bbcc313f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundManager: {fileID: 0}
+  soundManager: {fileID: 198514415}
   beatState: {fileID: 198514414}
 --- !u!95 &1209029600
 Animator:

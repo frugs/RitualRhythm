@@ -7,16 +7,16 @@ using UnityEngine;
 namespace RitualRhythm.Actor.Enemy {
     public class EnemyModel : ActorModel {
         private readonly BeatExecutor _beatExecutor;
-        private bool isAttackQueued;
+        private bool _isAttackQueued;
 
-        public EnemyModel(Vector2 position, BeatState beatState, BeatExecutor beatExecutor) : base(position, beatState) {
+        public EnemyModel(Vector2 position, BeatState beatState, BeatExecutor beatExecutor) : base(position) {
             _beatExecutor = beatExecutor;
         }
 
         public override void Attack() {
-            if (!isAttackQueued) {
+            if (!_isAttackQueued) {
                 _beatExecutor.queueCallback(AttackOnBeat);
-                isAttackQueued = true;
+                _isAttackQueued = true;
             }
         }
 
@@ -30,11 +30,13 @@ namespace RitualRhythm.Actor.Enemy {
             byte[] buffer = new byte[nameLen];
             Marshal.Copy(namePtr, buffer, 0, buffer.Length);
             string name = Encoding.UTF8.GetString(buffer, 0, nameLen);
-            if (name == "Beat") {
+            Debug.Log(name);
+            if (name == "BeatIn") {
                 base.Attack();
-                isAttackQueued = false;
+                _isAttackQueued = false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

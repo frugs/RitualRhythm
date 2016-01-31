@@ -36,8 +36,6 @@ namespace RitualRhythm.Actor.Enemy {
         }
 
         public void Update(float deltaTime, Vector2 playerPosition) {
-            Debug.Log(_aiType.ToString());
-
             _decisionTimer -= deltaTime;
             if (_decisionTimer < 0f) {
                 ResetDecisionTimer();
