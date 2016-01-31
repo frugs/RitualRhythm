@@ -8,7 +8,7 @@ namespace RitualRhythm.Actor {
         public abstract IActorState Attack(ActorModel actorModel);
 
         public IActorState GetHurt(ActorModel actorModel) {
-            actorModel.Position -= actorModel.LookDirection * 0.8f;
+            actorModel.Position -= actorModel.LookDirection * 3f;
             actorModel.Health -= 25f;
             if (actorModel.Health > 5) {
                 actorModel.AnimationState = ActorAnimationState.GettingHurt;
