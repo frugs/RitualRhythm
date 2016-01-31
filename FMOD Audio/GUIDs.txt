@@ -1,6 +1,7 @@
 {0f6ca391-1297-4fd5-96f9-2855b43a2919} event:/Music/Beat
 {52d9cda6-4cda-4dc3-92ad-bcfcc32c1ab6} event:/SFX/Impacts/Big
 {3640e7ea-9fbe-40db-a6d0-779be913a114} event:/SFX/Impacts/Small
+{1c41038b-75b6-4ee8-b13d-2dd3b4f8d729} event:/SFX/Impacts/Miss
 {c73cfff5-f2fe-4263-b15c-f07dd62f60b5} event:/SFX/Vox/A/Block
 {a2ce1c8d-35f5-4714-9e3b-0bb58aa3f7d9} event:/SFX/Vox/A/Death
 {cddf6063-f780-4bee-bd93-c5e103a57c8a} event:/SFX/Vox/A/Hurt
@@ -21,8 +22,11 @@
 {3166731f-d523-458f-9c91-38d9caf3d204} event:/SFX/Vox/O/Death
 {67553ae9-b709-4f9c-bbe2-571c0f180078} event:/SFX/Vox/O/Hurt
 {4b03c4fb-8ece-4285-bb74-635f0cfd6fa2} event:/SFX/Vox/O/Strike
+{f2891d77-a089-4966-8e0d-103b7a0aa9d0} event:/SFX/Vox/C/Block
+{ab3c9400-fad6-486a-a87c-d43da5dc52f3} event:/SFX/Vox/C/Death
+{2cef15d9-beb6-440f-a776-f395dcb02f02} event:/SFX/Vox/C/Hurt
+{b6a068c7-f818-4847-9e3a-8484ac5656ee} event:/SFX/Vox/C/Strike
 {3b279ac2-a4d9-4344-b6e3-db8ed8f19e6a} event:/SFX/HitTest
-{d79a1906-d06c-4b04-9bec-620e639e0ed3} event:/SFX/MultiHitTest
 {34cb7d49-8f3b-4da1-86fc-12b4474efc28} bus:/
 {12745ad2-ac62-421f-b933-5a3d9c67e89b} bus:/Music
 {89058d94-dce5-422c-9b6c-12245eea567e} bus:/SFX
