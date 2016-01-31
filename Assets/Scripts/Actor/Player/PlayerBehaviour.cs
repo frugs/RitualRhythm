@@ -18,7 +18,20 @@ namespace RitualRhythm.Actor.Player {
                 InputUtil.Left,
                 InputUtil.Right);
 
-        public override void Update() {
+        public BeatState beatState;
+
+        protected override Rigidbody Rigidbody {
+            get { return GetComponent<Rigidbody>(); }
+        }
+
+        public ActorModel ActorModel { get; private set; }
+
+        public virtual void Start() {
+            ActorModel = new ActorModel(transform.position, beatState);
+            ActorModel.RegisterListener(this);
+        }
+
+        public void Update() {
             _directionalInput.Update();
 
             if (Mathf.Abs(_directionalInput.Horizontal) > 0) {
@@ -35,7 +48,7 @@ namespace RitualRhythm.Actor.Player {
 
 			handleHurt();
 
-            base.Update();
+            ActorModel.Update(Time.deltaTime);
 
             var animator = GetComponent<Animator>();
 
@@ -67,7 +80,16 @@ namespace RitualRhythm.Actor.Player {
 			_hurt = true;
 		}
 
+        public override void PositionUpdated(Vector2 position) {
+            UpdatePosition(position);
+        }
+
+        public override void LookDirectionUpdated(Vector2 lookDirection) {
+            UpdateLookDirection(lookDirection);
+        }
+
         public override void AnimationStateUpdated(ActorAnimationState state) {
+            UpdateAnimationState(state);
             if (state == ActorAnimationState.Attacking) {
                 GetComponent<Animator>().SetTrigger("Attack");
             }

@@ -55,19 +55,19 @@ namespace RitualRhythm.Actor {
 			_beatState = beatState;
         }
 
-        public void Jump() {
+        public virtual void Jump() {
             _actorState = _actorState.Jump(this);
         }
 
-        public void LookTowards(Vector2 direction) {
+        public virtual void LookTowards(Vector2 direction) {
             _actorState = _actorState.LookTowards(this, direction);
         }
 
-        public void MoveBy(Vector2 direction) {
+        public virtual void MoveBy(Vector2 direction) {
             _actorState = _actorState.Move(this, direction);
         }
 
-        public void Attack() {
+        public virtual void Attack() {
 			if (_beatState.isInBeat ()) {
 				_actorState = _actorState.Attack (this);
 			} else {
@@ -76,15 +76,15 @@ namespace RitualRhythm.Actor {
 			}
         }
 
-        public void GetHurt() {
+        public virtual void GetHurt() {
             _actorState = _actorState.GetHurt(this);
         }
 
-        public void GetHurtBadly() {
+        public virtual void GetHurtBadly() {
             _actorState = _actorState.GetHurtBadly(this);
         }
 
-        public void Update(float deltaTime) {
+        public virtual void Update(float deltaTime) {
             _actorState = _actorState.Update(this, deltaTime);
         }
 

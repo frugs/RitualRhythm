@@ -8,28 +8,32 @@ namespace RitualRhythm.Actor.Enemy {
     public class EnemyBehaviour : ActorBehaviour {
         private const float HurtAnimationLength = 0.25f;
 
-        private EnemyAiController AiController;
-
         private SpriteRenderer _spriteRenderer;
-		public Sound soundManager;
-
-		public BeatState beatState;
-        
         private bool _hurt;
         private IEnumerator _hurtAnimRoutine = EnumeratorUtils.EmptyEnumerator();
         private Color _originalColor;
+        private EnemyModel _enemyModel;
+        private EnemyAiController _aiController;
 
         public PlayerBehaviour PlayerBehaviour;
+        public BeatState BeatState;
+        public BeatExecutor BeatExecutor;
+        public Sound soundManager;
 
-        public override void Start () {
+        protected override Rigidbody Rigidbody {
+            get { return GetComponent<Rigidbody>();  }
+        }
+
+        public void Start () {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalColor = _spriteRenderer.color;
-            base.Start();
+            _enemyModel = new EnemyModel(transform.position, BeatState, BeatExecutor);
+            _enemyModel.RegisterListener(this);
 
-            AiController = new EnemyAiController(ActorModel, 1f, 3f);
+            _aiController = new EnemyAiController(_enemyModel, 1f, 3f);
         }
 	
-        public override void Update () {
+        public void Update () {
             if (_hurt) {
                 _hurtAnimRoutine = PlayHurtAnimation();
 				soundManager.playPain();
@@ -37,9 +41,9 @@ namespace RitualRhythm.Actor.Enemy {
             }
             _hurtAnimRoutine.MoveNext();
 
-            AiController.Update(Time.deltaTime, PlayerBehaviour.ActorModel.Position);
-
-            base.Update();
+            _aiController.Update(Time.deltaTime, PlayerBehaviour.ActorModel.Position);
+            
+            _enemyModel.Update(Time.deltaTime);
         }
 
         public void OnTriggerEnter(Collider col) {
@@ -61,6 +65,18 @@ namespace RitualRhythm.Actor.Enemy {
                 yield return null;
             }
             _spriteRenderer.color = _originalColor;
+        }
+
+        public override void PositionUpdated(Vector2 position) {
+            UpdatePosition(position);
+        }
+
+        public override void LookDirectionUpdated(Vector2 lookDirection) {
+            UpdateLookDirection(lookDirection);
+        }
+
+        public override void AnimationStateUpdated(ActorAnimationState state) {
+            UpdateAnimationState(state);
         }
     }
 }
