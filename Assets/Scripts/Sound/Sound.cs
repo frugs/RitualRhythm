@@ -4,55 +4,45 @@ using System;
 
 public class Sound : MonoBehaviour {
 
+	delegate void Runnable();
+
 	private const string music = "event:/Music/Beat";
 	private const string enemyCount = "Enemy Count";
 	private const string punch = "event:/SFX/Vox/A/Strike";
 
 	public const int BEATS_PER_MINUTE = 130;
 	public const int BEAT_MILLIS = 60000 / BEATS_PER_MINUTE;
-	private const int ALLOWED_OFFSET_MILLIS = 20;
+	private const int ALLOWED_OFFSET_MILLIS = 50;
 	private const int USER_LAG_MILLIS = 50;
 
 	private FMOD.Studio.EventInstance musicEv;
 	private FMOD.Studio.ParameterInstance enemyCountPa;
-	private FMOD.Studio.EVENT_CALLBACK cb;
 	
 	private float songTime;
 	private float previousFrameTime;
 	private float lastReportedPlayPosition;
+	private BeatExecutor beatExecutor;
 
 	// Use this for initialization
 	void Start () {
 
 		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
 		musicEv.getParameter (enemyCount, out enemyCountPa);
-		cb = new FMOD.Studio.EVENT_CALLBACK(StudioEventCallback);
-		musicEv.setCallback(cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
 
-		
 		previousFrameTime = Time.time;
 		lastReportedPlayPosition = 0;
 		musicEv.start ();
 		enemyCountChange (5);
+		beatExecutor = GetComponent<BeatExecutor> ();
+		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(onBeatWrapper);
+		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
 
 	}
 
-	public FMOD.RESULT StudioEventCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
-		Debug.Log ("It works!!!");
-		playPunch ();
-		return FMOD.RESULT.OK;
+	private FMOD.RESULT onBeatWrapper(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
+		return beatExecutor.onBeat (type, eventInstance, parameters);
 	}
-	
-//	public void addBeatCallback(Delegate callback) {
-//		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(callback);
-//		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT);
-//	}
-//
-//	public void addMarkerCallback(Delegate callback) {
-//		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(callback);
-//		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
-//	}
-	
+
 	void Update() {
 		songTime += Time.time - previousFrameTime;
 		previousFrameTime = Time.time;
