@@ -22,7 +22,7 @@ public class Restarter : MonoBehaviour {
 	IEnumerator playEnding() {
 		
 		soundManager.setState(4);
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(10);
 		Application.LoadLevel(Application.loadedLevel);
 	}
 }

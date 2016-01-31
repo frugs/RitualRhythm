@@ -79,8 +79,15 @@ namespace RitualRhythm.Actor.Enemy {
         }
 
         public override void AnimationStateUpdated(ActorAnimationState state) {
+
             UpdateAnimationState(state);
-			if (state == ActorAnimationState.Death) {
+            if (state == ActorAnimationState.GettingHurt)
+            {
+                soundManager.playImpact(Catalogue.Type.BIG);
+            }
+            if (state == ActorAnimationState.Death)
+            {
+                soundManager.playImpact(Catalogue.Type.BIG);
 				soundManager.playVox (_aiController.character, Catalogue.Type.DEATH);
 			}
         }

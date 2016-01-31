@@ -74,11 +74,13 @@ namespace RitualRhythm.Actor.Player {
             if (state == ActorAnimationState.GettingHurt) {
                 Debug.Log("Ow");
                 soundManager.playPain();
+                soundManager.playImpact(Catalogue.Type.BIG);
             }
 
             if (state == ActorAnimationState.Death) {
                 Debug.Log("Lose");
                 soundManager.playDeath();
+                soundManager.playImpact(Catalogue.Type.BIG);
             }
 
             UpdateAnimationState(state);
