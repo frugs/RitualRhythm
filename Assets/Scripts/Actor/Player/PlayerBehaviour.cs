@@ -71,10 +71,6 @@ namespace RitualRhythm.Actor.Player {
         }
 
         public override void AnimationStateUpdated(ActorAnimationState state) {
-            if (state == ActorAnimationState.Attacking) {
-                GetComponent<Animator>().SetTrigger("Attack");
-            }
-
             if (state == ActorAnimationState.GettingHurt) {
                 Debug.Log("Ow");
                 soundManager.playPain();
