@@ -22,11 +22,13 @@ namespace RitualRhythm.Actor {
         }
 
         public IActorState GetHurt(ActorModel actorModel) {
-            throw new System.NotImplementedException();
+			actorModel.Position -= actorModel.LookDirection * 0.8f;
+			return new ActorStunState(0.7f);
         }
 
         public IActorState GetHurtBadly(ActorModel actorModel) {
-            throw new System.NotImplementedException();
+            actorModel.Position -= actorModel.LookDirection * 1.5f;
+			return new ActorStunState(2f);
         }
 
         public IActorState Update(ActorModel actorModel, float deltaTime) {

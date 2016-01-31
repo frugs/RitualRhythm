@@ -9,6 +9,7 @@ public class Sound : MonoBehaviour {
 	private const string music = "event:/Music/Beat";
 	private const string punch = "event:/SFX/Vox/A/Strike";
 	private const string pain = "event:/SFX/Vox/O/Hurt";
+	private const string death = "event:/SFX/Vox/O/Death";
 	private const string enemyCount = "Enemy Count";
 	private const string speed = "Speed";
 	private const string state = "State";
@@ -89,6 +90,10 @@ public class Sound : MonoBehaviour {
 
 	public void playPain() {
 		FMODUnity.RuntimeManager.PlayOneShot (pain);
+	}
+
+	public void playDeath() {
+		FMODUnity.RuntimeManager.PlayOneShot (death);
 	}
 	
 	private int getFMODTime() {

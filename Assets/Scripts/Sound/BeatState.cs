@@ -33,10 +33,10 @@ public class BeatState : MonoBehaviour {
 			string name = Encoding.UTF8.GetString(buffer, 0, nameLen);
 			if (name == "BeatIn") {
 				StartCoroutine(setInBeat(true));
-				Debug.Log("In");
+//				Debug.Log("In");
 			} else if (name == "BeatOut") {
 				StartCoroutine(setInBeat(false));
-				Debug.Log("Out");
+//				Debug.Log("Out");
 			}
 		}
 		return true;
