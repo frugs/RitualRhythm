@@ -22,6 +22,10 @@
 {3166731f-d523-458f-9c91-38d9caf3d204} event:/SFX/Vox/O/Death
 {67553ae9-b709-4f9c-bbe2-571c0f180078} event:/SFX/Vox/O/Hurt
 {4b03c4fb-8ece-4285-bb74-635f0cfd6fa2} event:/SFX/Vox/O/Strike
+{f64ff083-7549-4763-9755-8e11c8863247} event:/SFX/Vox/B/Block
+{a48db230-6472-45c8-8480-8306432ca65e} event:/SFX/Vox/B/Death
+{990e283f-cfdb-403c-a0b4-ef2537bdff38} event:/SFX/Vox/B/Hurt
+{bb05f631-eeb8-4687-98c8-8e1132819f0f} event:/SFX/Vox/B/Strike
 {3b279ac2-a4d9-4344-b6e3-db8ed8f19e6a} event:/SFX/HitTest
 {34cb7d49-8f3b-4da1-86fc-12b4474efc28} bus:/
 {12745ad2-ac62-421f-b933-5a3d9c67e89b} bus:/Music
