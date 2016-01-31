@@ -22,6 +22,12 @@
 {67553ae9-b709-4f9c-bbe2-571c0f180078} event:/SFX/Vox/O/Hurt
 {4b03c4fb-8ece-4285-bb74-635f0cfd6fa2} event:/SFX/Vox/O/Strike
 {3b279ac2-a4d9-4344-b6e3-db8ed8f19e6a} event:/SFX/HitTest
+{d79a1906-d06c-4b04-9bec-620e639e0ed3} event:/SFX/MultiHitTest
 {34cb7d49-8f3b-4da1-86fc-12b4474efc28} bus:/
+{12745ad2-ac62-421f-b933-5a3d9c67e89b} bus:/Music
+{89058d94-dce5-422c-9b6c-12245eea567e} bus:/SFX
+{44eadb34-ee64-4f3e-81bf-8f8044e027b6} bus:/SFX/Impacts
+{880a58cd-e9f1-4bf2-9788-417461a84dd4} bus:/SFX/Vox
 {01ae0e13-697e-4711-abe4-5c10b57e340e} bus:/Reverb
+{92701aea-717b-4917-b81f-d0aaa4696284} snapshot:/Pause
 {3233271c-1535-4f5e-952c-e0db8f2dd461} bank:/Master Bank
