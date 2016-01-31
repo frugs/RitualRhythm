@@ -7,8 +7,10 @@ public class Sound : MonoBehaviour {
 	delegate void Runnable();
 
 	private const string music = "event:/Music/Beat";
-	private const string enemyCount = "Enemy Count";
 	private const string punch = "event:/SFX/Vox/A/Strike";
+	private const string enemyCount = "Enemy Count";
+	private const string speed = "Speed";
+	private const string state = "State";
 
 	public const int BEATS_PER_MINUTE = 130;
 	public const int BEAT_MILLIS = 60000 / BEATS_PER_MINUTE;
@@ -17,6 +19,8 @@ public class Sound : MonoBehaviour {
 
 	private FMOD.Studio.EventInstance musicEv;
 	private FMOD.Studio.ParameterInstance enemyCountPa;
+	private FMOD.Studio.ParameterInstance speedPa;
+	private FMOD.Studio.ParameterInstance statePa;
 	private FMOD.Studio.EVENT_CALLBACK cb;
 	
 	private float songTime;
@@ -29,11 +33,15 @@ public class Sound : MonoBehaviour {
 
 		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
 		musicEv.getParameter (enemyCount, out enemyCountPa);
+		musicEv.getParameter (speed, out speedPa);
+		musicEv.getParameter (state, out statePa);
 
 		previousFrameTime = Time.time;
 		lastReportedPlayPosition = 0;
 		musicEv.start ();
 		enemyCountChange (5);
+		statePa.setValue (1);
+		speedPa.setValue (1);
 		beatExecutor = GetComponent<BeatExecutor> ();
 		cb = new FMOD.Studio.EVENT_CALLBACK(onBeatWrapper);
 		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);

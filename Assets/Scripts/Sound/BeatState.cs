@@ -43,7 +43,7 @@ public class BeatState : MonoBehaviour {
 	}
 
 	IEnumerator setInBeat(bool inBeat) {
-		yield return new WaitForSeconds (0.05f);
+		yield return new WaitForSeconds (0.07f);
 		this.inBeat = inBeat;
 	}
 }
