@@ -148,6 +148,7 @@ MonoBehaviour:
   BeatState: {fileID: 0}
   BeatExecutor: {fileID: 0}
   soundManager: {fileID: 0}
+  InitialHealth: 25
 --- !u!212 &21239128
 SpriteRenderer:
   m_ObjectHideFlags: 1
