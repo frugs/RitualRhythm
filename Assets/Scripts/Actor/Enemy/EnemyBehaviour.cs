@@ -27,7 +27,7 @@ namespace RitualRhythm.Actor.Enemy {
         public void Start () {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalColor = _spriteRenderer.color;
-            _enemyModel = new ActorModel(transform.position, 100f);
+            _enemyModel = new ActorModel(transform.position, 25f);
             _enemyModel.RegisterListener(this);
 
             _aiController = new EnemyAiController(_enemyModel, 1f, 3f);

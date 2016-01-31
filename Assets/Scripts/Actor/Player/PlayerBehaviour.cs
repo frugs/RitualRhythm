@@ -45,7 +45,7 @@ namespace RitualRhythm.Actor.Player {
                 }  else {
                     Debug.Log("Not allowed");
 					soundManager.playImpact(Catalogue.Type.MISS);
-                    ActorModel.GetHurt();
+//                    ActorModel.GetHurt();
                 }
             }
 

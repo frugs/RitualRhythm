@@ -37,7 +37,7 @@ public class Sound : MonoBehaviour {
 		previousFrameTime = Time.time;
 		lastReportedPlayPosition = 0;
 		musicEv.start ();
-		enemyCountChange (5);
+		enemyCountChange (3);
 		statePa.setValue (1);
 		speedPa.setValue (3);
 		beatExecutor = GetComponent<BeatExecutor> ();

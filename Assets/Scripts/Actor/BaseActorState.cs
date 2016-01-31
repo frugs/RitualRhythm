@@ -10,9 +10,9 @@ namespace RitualRhythm.Actor {
         public IActorState GetHurt(ActorModel actorModel) {
             actorModel.Position -= actorModel.LookDirection * 0.8f;
             actorModel.Health -= 25f;
-            if (actorModel.Health > 0) {
+            if (actorModel.Health > 5) {
                 actorModel.AnimationState = ActorAnimationState.GettingHurt;
-                return new ActorStunState(0.7f);
+                return new ActorStunState(0.2f);
             } else {
                 actorModel.AnimationState = ActorAnimationState.Death;
                 return GetHurtBadly(actorModel);
