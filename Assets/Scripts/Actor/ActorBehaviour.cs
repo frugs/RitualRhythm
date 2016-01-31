@@ -7,9 +7,11 @@ namespace RitualRhythm.Actor {
         protected ActorModel ActorModel { get; private set; }
         protected Rigidbody Rigidbody { get; private set; }
 
+		public BeatState beatState;
+
         public virtual void Start() {
             Rigidbody = GetComponent<Rigidbody>();
-            ActorModel = new ActorModel(transform.position);
+            ActorModel = new ActorModel(transform.position, beatState);
             ActorModel.RegisterListener(this);
         }
 

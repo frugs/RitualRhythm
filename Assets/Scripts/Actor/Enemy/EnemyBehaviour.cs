@@ -3,10 +3,7 @@ using UnityEngine;
 
 namespace RitualRhythm.Actor.Enemy {
     public class EnemyBehaviour : MonoBehaviour {
-
-		public Sound soundManager;
-
-        private const float HurtAnimationLength = 0.05f;
+        private const float HurtAnimationLength = 0.25f;
 
         private SpriteRenderer _spriteRenderer;
         
@@ -20,10 +17,6 @@ namespace RitualRhythm.Actor.Enemy {
         }
 	
         public void Update () {
-//			if (soundManager.isOnBeat (out offset)) {
-//				_hurtAnimRoutine = PlayHurtAnimation();
-//				soundManager.playPunch();
-//			} 
             if (_hurt) {
                 _hurtAnimRoutine = PlayHurtAnimation();
                 _hurt = false;

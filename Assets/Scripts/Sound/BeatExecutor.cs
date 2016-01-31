@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class BeatExecutor : MonoBehaviour {
 
-	public Sound soundManager;
+
+	public delegate bool FMODCallback(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters);
+
+	private IList<FMODCallback> queue = new List<FMODCallback>();
+	private IList<FMODCallback> callbacks = new List<FMODCallback>();
 
 	// Use this for initialization
 	void Start () {
-//		soundManager.addBeatCallback (onBeat);
+
 	}
 	
 	// Update is called once per frame
@@ -16,8 +20,22 @@ public class BeatExecutor : MonoBehaviour {
 	
 	}
 
-	FMOD.RESULT onBeat(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
-		Debug.Log ("Still works");
+	public void queueCallback(FMODCallback callback) {
+		queue.Add (callback);
+	}
+
+	public void addCallback(FMODCallback callback) {
+		callbacks.Add (callback);
+	}
+
+	public FMOD.RESULT onBeat(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
+		foreach (FMODCallback function in callbacks) {
+			function.Invoke(type, eventInstance, parameters);
+		}
+		foreach (FMODCallback function in queue) {
+			function.Invoke(type, eventInstance, parameters);
+		}
+		queue.Clear ();
 		return FMOD.RESULT.OK;
 	}
 }
