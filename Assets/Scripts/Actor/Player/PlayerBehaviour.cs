@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RitualRhythm.Actor.Player {
     public class PlayerBehaviour : ActorBehaviour {
 
-        private const float PlayerVelocity = 4f;
+		private const float PlayerVelocity = 4f;
 
         private readonly ResponsiveButtonDirectionalInput _directionalInput =
             new ResponsiveButtonDirectionalInput(

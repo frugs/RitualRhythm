@@ -17,6 +17,7 @@ public class Sound : MonoBehaviour {
 
 	private FMOD.Studio.EventInstance musicEv;
 	private FMOD.Studio.ParameterInstance enemyCountPa;
+	private FMOD.Studio.EVENT_CALLBACK cb;
 	
 	private float songTime;
 	private float previousFrameTime;
@@ -34,7 +35,7 @@ public class Sound : MonoBehaviour {
 		musicEv.start ();
 		enemyCountChange (5);
 		beatExecutor = GetComponent<BeatExecutor> ();
-		FMOD.Studio.EVENT_CALLBACK cb = new FMOD.Studio.EVENT_CALLBACK(onBeatWrapper);
+		cb = new FMOD.Studio.EVENT_CALLBACK(onBeatWrapper);
 		musicEv.setCallback (cb, FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_BEAT | FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
 
 	}
