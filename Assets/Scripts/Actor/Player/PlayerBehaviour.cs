@@ -41,6 +41,7 @@ namespace RitualRhythm.Actor.Player {
             if (Input.GetButtonDown("Fire1")) {
                 if (beatState.isInBeat()) {
                     ActorModel.Attack();
+					soundManager.playImpact(Catalogue.Type.MISS);
                 }  else {
                     Debug.Log("Not allowed");
                     ActorModel.GetHurt();

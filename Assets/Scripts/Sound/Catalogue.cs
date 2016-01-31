@@ -3,7 +3,7 @@ public class Catalogue
 	private const string MUSIC = "event:/Music/Beat";
 
 	public const string VOX = "event:/SFX/Vox/";
-	public const string IMPACT = "event:/SFX/Impact/";
+	public const string IMPACT = "event:/SFX/Impacts/";
 	
 	public class Character {
 		

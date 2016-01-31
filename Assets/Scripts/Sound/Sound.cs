@@ -90,6 +90,14 @@ public class Sound : MonoBehaviour {
 		}
 	}
 
+	public void playVox(String character, String type) {
+		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getVox(character, type));
+	}
+
+	public void playImpact(String type) {
+		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getImpact(type));
+	}
+	
 	public void playPunch() {
 		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getVox(Catalogue.Character.A, Catalogue.Type.STRIKE));
 	}
