@@ -6,6 +6,7 @@ namespace RitualRhythm.Actor.Enemy {
         private const float HurtAnimationLength = 0.1f;
 
         private SpriteRenderer _spriteRenderer;
+		public Sound soundManager;
 
 		public BeatState beatState;
         
@@ -19,13 +20,11 @@ namespace RitualRhythm.Actor.Enemy {
         }
 	
         public void Update () {
-			if (beatState.isInBeat ()) {
-				_hurtAnimRoutine = PlayHurtAnimation();
-			}
-//            if (_hurt) {
-//                _hurtAnimRoutine = PlayHurtAnimation();
-//                _hurt = false;
-//            }
+            if (_hurt) {
+                _hurtAnimRoutine = PlayHurtAnimation();
+				soundManager.playPain();
+                _hurt = false;
+            }
             _hurtAnimRoutine.MoveNext();
         }
 

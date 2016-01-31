@@ -582,6 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661206c39df417647badae59d6038652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundManager: {fileID: 198514415}
+  beatState: {fileID: 198514414}
 --- !u!1 &1064128132
 GameObject:
   m_ObjectHideFlags: 0
