@@ -12,8 +12,6 @@ namespace RitualRhythm.Actor.Enemy {
 
         private SpriteRenderer _spriteRenderer;
 		public Sound soundManager;
-
-		public BeatState beatState;
         
         private bool _hurt;
         private IEnumerator _hurtAnimRoutine = EnumeratorUtils.EmptyEnumerator();

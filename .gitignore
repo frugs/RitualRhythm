@@ -26,5 +26,6 @@ ExportedObj/
 sysinfo.txt
 *.log
 Assets/StreamingAssets
+Assets/UnityVS
 Assets/FMODStudioCache.asset
 Assets/FMODStudioCache.asset.meta

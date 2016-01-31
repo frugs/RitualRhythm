@@ -5,11 +5,7 @@ using System;
 public class Sound : MonoBehaviour {
 
 	delegate void Runnable();
-
-	private const string music = "event:/Music/Beat";
-	private const string punch = "event:/SFX/Vox/A/Strike";
-	private const string pain = "event:/SFX/Vox/O/Hurt";
-	private const string death = "event:/SFX/Vox/O/Death";
+	
 	private const string enemyCount = "Enemy Count";
 	private const string speed = "Speed";
 	private const string state = "State";
@@ -33,7 +29,7 @@ public class Sound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		musicEv = FMODUnity.RuntimeManager.CreateInstance (music);
+		musicEv = FMODUnity.RuntimeManager.CreateInstance (Catalogue.getMusic());
 		musicEv.getParameter (enemyCount, out enemyCountPa);
 		musicEv.getParameter (speed, out speedPa);
 		musicEv.getParameter (state, out statePa);
@@ -85,15 +81,15 @@ public class Sound : MonoBehaviour {
 	}
 
 	public void playPunch() {
-		FMODUnity.RuntimeManager.PlayOneShot (punch);
+		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getVox(Catalogue.Character.A, Catalogue.Type.STRIKE));
 	}
 
 	public void playPain() {
-		FMODUnity.RuntimeManager.PlayOneShot (pain);
+		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getVox(Catalogue.Character.A, Catalogue.Type.HURT));
 	}
 
 	public void playDeath() {
-		FMODUnity.RuntimeManager.PlayOneShot (death);
+		FMODUnity.RuntimeManager.PlayOneShot(Catalogue.getVox(Catalogue.Character.A, Catalogue.Type.DEATH));
 	}
 	
 	private int getFMODTime() {
