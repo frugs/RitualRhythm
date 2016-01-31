@@ -4,8 +4,8 @@ using UnityEngine;
 namespace RitualRhythm.Actor {
     public class ActorBehaviour : MonoBehaviour, IActorModelListener {
 
-        protected ActorModel ActorModel { get; private set; }
         protected Rigidbody Rigidbody { get; private set; }
+        public ActorModel ActorModel { get; private set; }
 
 		public BeatState beatState;
 

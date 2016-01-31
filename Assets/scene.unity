@@ -533,8 +533,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661206c39df417647badae59d6038652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beatState: {fileID: 198514414}
   soundManager: {fileID: 198514415}
   beatState: {fileID: 198514414}
+  PlayerBehaviour: {fileID: 1209029599}
 --- !u!1 &1209029594
 GameObject:
   m_ObjectHideFlags: 0
