@@ -1,9 +1,11 @@
 ﻿using System.Collections;
+using RitualRhythm;
+using RitualRhythm.Actor;
 using UnityEngine;
 
 namespace RitualRhythm.Actor.Enemy {
     public class EnemyBehaviour : MonoBehaviour {
-        private const float HurtAnimationLength = 0.1f;
+        private const float HurtAnimationLength = 0.25f;
 
         private SpriteRenderer _spriteRenderer;
 

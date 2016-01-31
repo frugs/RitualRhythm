@@ -17,7 +17,7 @@ namespace RitualRhythm.Actor {
         }
 
         public IActorState Attack(ActorModel actorModel) {
-            actorModel.IsAttacking = true;
+            actorModel.AnimationState = ActorAnimationState.Attacking;
             return new ActorAttackState();
         }
 

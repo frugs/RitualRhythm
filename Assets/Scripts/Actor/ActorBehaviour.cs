@@ -19,11 +19,11 @@ namespace RitualRhythm.Actor {
             ActorModel.Update(Time.deltaTime);
         }
         
-        public void PositionUpdated(Vector2 position) {
+        public virtual void PositionUpdated(Vector2 position) {
             Rigidbody.MovePosition(new Vector3(position.x, position.y, position.y));
         }
 
-        public void LookDirectionUpdated(Vector2 lookDirection) {
+        public virtual void LookDirectionUpdated(Vector2 lookDirection) {
             if (lookDirection.Equals(Vector2.left)) {
                 transform.localScale = new Vector3(
                         -Mathf.Abs(transform.localScale.x),
@@ -37,8 +37,8 @@ namespace RitualRhythm.Actor {
             }
         }
 
-        public void AttackStateUpdated(bool isAttacking) {
-            transform.Find("Arm").gameObject.SetActive(isAttacking);
+        public virtual void AnimationStateUpdated(ActorAnimationState state) {
+            transform.Find("Arm").gameObject.SetActive(state == ActorAnimationState.Attacking);
         }
     }
 }
