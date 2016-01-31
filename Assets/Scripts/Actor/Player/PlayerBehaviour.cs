@@ -71,6 +71,7 @@ namespace RitualRhythm.Actor.Player {
 					Debug.Log ("Lose");
 					soundManager.playDeath();
 					ActorModel.GetHurtBadly ();
+					Destroy(this.gameObject);
 					health = 100;
 					return;
 				}

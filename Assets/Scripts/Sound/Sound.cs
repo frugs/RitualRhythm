@@ -46,6 +46,11 @@ public class Sound : MonoBehaviour {
 
 	}
 
+	void OnDestroy() {
+		musicEv.stop (FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+		musicEv.release();
+	}
+
 	private FMOD.RESULT onBeatWrapper(FMOD.Studio.EVENT_CALLBACK_TYPE type, IntPtr eventInstance, IntPtr parameters) {
 		return beatExecutor.onBeat (type, eventInstance, parameters);
 	}
@@ -68,6 +73,11 @@ public class Sound : MonoBehaviour {
 		enemyCountPa.setValue (count);
 	}
 
+	public void setState(int state)
+	{
+		statePa.setValue (state);
+	}
+	
 	void OnGUI() {
 		Event e = Event.current;
 		if (e.type == EventType.KeyDown && e.keyCode == KeyCode.Space) {
