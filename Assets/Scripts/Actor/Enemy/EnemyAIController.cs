@@ -18,17 +18,33 @@ namespace RitualRhythm.Actor.Enemy {
         private AiType _aiType;
         private Vector2 _wanderDirection;
         private double _decisionTimer;
+		private Sound soundManager;
 
-        public EnemyAiController(ActorModel actorModel, float attackRange, float velocity) {
+		public string character;
+
+        public EnemyAiController(ActorModel actorModel, float attackRange, float velocity, Sound soundManager) {
             this._actorModel = actorModel;
             _attackRange = attackRange;
             _velocity = velocity;
+			this.soundManager = soundManager;
 
             PickAiType();
             ResetDecisionTimer();
         }
 
         private void PickAiType() {
+			var rand = Random.value;
+			if (rand < 0.2) {
+				character = Catalogue.Character.A;
+			} else if (rand < 0.4) {
+				character = Catalogue.Character.H;
+			} else if (rand < 0.6) {
+				character = Catalogue.Character.D;
+			} else if (rand < 0.8) {
+				character = Catalogue.Character.M;
+			} else if (rand < 1.0) {
+				character = Catalogue.Character.O;
+			}
             var values = Enum.GetValues(typeof(AiType));
             _aiType = (AiType)values.GetValue(Random.Range(0, values.Length));
             _wanderDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
@@ -52,6 +68,7 @@ namespace RitualRhythm.Actor.Enemy {
                     _actorModel.MoveBy(moveBy);
                 } else if (Random.value > 0.7f) {
                     _actorModel.Attack();
+					soundManager.playVox(character, Catalogue.Type.STRIKE);
                 }
             }
 

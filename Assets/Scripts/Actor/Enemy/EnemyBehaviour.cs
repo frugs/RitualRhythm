@@ -30,13 +30,13 @@ namespace RitualRhythm.Actor.Enemy {
             _enemyModel = new ActorModel(transform.position, 25f);
             _enemyModel.RegisterListener(this);
 
-            _aiController = new EnemyAiController(_enemyModel, 1f, 3f);
+            _aiController = new EnemyAiController(_enemyModel, 1f, 3f, soundManager);
         }
 	
         public void Update () {
             if (_hurt) {
                 _hurtAnimRoutine = PlayHurtAnimation();
-				soundManager.playPain();
+				soundManager.playVox(Catalogue.Character.O, Catalogue.Type.HURT);
                 _hurt = false;
             }
             _hurtAnimRoutine.MoveNext();
@@ -79,6 +79,9 @@ namespace RitualRhythm.Actor.Enemy {
 
         public override void AnimationStateUpdated(ActorAnimationState state) {
             UpdateAnimationState(state);
+			if (state == ActorAnimationState.Death) {
+				soundManager.playVox (_aiController.character, Catalogue.Type.DEATH);
+			}
         }
     }
 }
