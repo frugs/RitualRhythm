@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace RitualRhythm {
     public class CameraBehaviour : MonoBehaviour {
@@ -13,7 +14,7 @@ namespace RitualRhythm {
             _minX = Mathf.Max(_minX, FollowTarget.transform.position.x);
             transform.position = new Vector3(_minX, transform.position.y, transform.position.z);
 
-            if (Mathf.Abs(Boss.transform.position.x - transform.position.x) < 1f) {
+            if (Mathf.Abs(Boss.transform.position.x - transform.position.x) < 6f) {
                 Sound.setState(2);
             }
         }
