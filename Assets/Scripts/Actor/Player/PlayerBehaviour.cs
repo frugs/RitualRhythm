@@ -4,12 +4,7 @@ using UnityEngine;
 namespace RitualRhythm.Actor.Player {
     public class PlayerBehaviour : ActorBehaviour {
 
-		public Sound soundManager;
 		private const float PlayerVelocity = 4f;
-
-		private int health = 100;
-
-		private bool _hurt;
 
         private readonly ResponsiveButtonDirectionalInput _directionalInput =
             new ResponsiveButtonDirectionalInput(
@@ -18,6 +13,7 @@ namespace RitualRhythm.Actor.Player {
                 InputUtil.Left,
                 InputUtil.Right);
 
+        public Sound soundManager;
         public BeatState beatState;
 
         protected override Rigidbody Rigidbody {
@@ -27,7 +23,7 @@ namespace RitualRhythm.Actor.Player {
         public ActorModel ActorModel { get; private set; }
 
         public virtual void Start() {
-            ActorModel = new ActorModel(transform.position);
+            ActorModel = new ActorModel(transform.position, 100f);
             ActorModel.RegisterListener(this);
         }
 
@@ -51,8 +47,6 @@ namespace RitualRhythm.Actor.Player {
                 }
             }
 
-			handleHurt();
-
             ActorModel.Update(Time.deltaTime);
 
             var animator = GetComponent<Animator>();
@@ -61,29 +55,9 @@ namespace RitualRhythm.Actor.Player {
                 "Speed", 
                 Mathf.Abs(_directionalInput.Horizontal) + Mathf.Abs(_directionalInput.Vertical));
         }
-
-		void handleHurt ()
-		{
-			if (_hurt) {
-				health -= 25;
-				_hurt = false;
-				if (health <= 0) {
-					Debug.Log ("Lose");
-					soundManager.playDeath();
-					ActorModel.GetHurtBadly ();
-					Destroy(this.gameObject);
-					health = 100;
-					return;
-				}
-				Debug.Log ("Ow");
-				ActorModel.GetHurt ();
-				soundManager.playPain();
-			}
-
-		}
-
+        
 		public void OnTriggerEnter(Collider col) {
-			_hurt = true;
+			ActorModel.GetHurt();
 		}
 
         public override void PositionUpdated(Vector2 position) {
@@ -95,10 +69,21 @@ namespace RitualRhythm.Actor.Player {
         }
 
         public override void AnimationStateUpdated(ActorAnimationState state) {
-            UpdateAnimationState(state);
             if (state == ActorAnimationState.Attacking) {
                 GetComponent<Animator>().SetTrigger("Attack");
             }
+
+            if (state == ActorAnimationState.GettingHurt) {
+                Debug.Log("Ow");
+                soundManager.playPain();
+            }
+
+            if (state == ActorAnimationState.Death) {
+                Debug.Log("Lose");
+                soundManager.playDeath();
+            }
+
+            UpdateAnimationState(state);
         }
     }
 }

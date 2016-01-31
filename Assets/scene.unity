@@ -652,7 +652,7 @@ GameObject:
   - 4: {fileID: 1825496390}
   - 54: {fileID: 1825496392}
   - 65: {fileID: 1825496391}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

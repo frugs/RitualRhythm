@@ -49,8 +49,11 @@ namespace RitualRhythm.Actor {
             }
         }
 
-        public ActorModel(Vector2 position) {
+        public float Health { get; set; }
+
+        public ActorModel(Vector2 position, float initialHealth) {
             _position = position;
+            Health = initialHealth;
         }
 
         public virtual void Jump() {
@@ -70,6 +73,7 @@ namespace RitualRhythm.Actor {
         }
 
         public virtual void GetHurt() {
+            Debug.Log(_actorState.GetType().ToString());
             _actorState = _actorState.GetHurt(this);
         }
 

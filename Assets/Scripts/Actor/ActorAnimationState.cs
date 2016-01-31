@@ -4,6 +4,7 @@
         Jumping,
         Walking,
         GettingHurt,
-        GettingHurtBadly
+        GettingHurtBadly,
+        Death
     }
 }
