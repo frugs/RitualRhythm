@@ -14,12 +14,17 @@ namespace RitualRhythm.Actor {
 
         private bool _isAttacking;
 
+        private const float MinY = -5.5f;
+        private const float MaxY = -2f;
+
         public Vector2 Position {
             get { return _position; }
             set {
-                _position = value;
+                var newPosition = ClampPositionInWalkableArea(value);
+
+                _position = newPosition;
                 foreach (var listener in _listeners) {
-                    listener.PositionUpdated(value);
+                    listener.PositionUpdated(newPosition);
                 }
             }
         }
@@ -78,6 +83,11 @@ namespace RitualRhythm.Actor {
 
         public void RegisterListener(IActorModelListener listener) {
             _listeners.Add(listener);
+        }
+
+        private Vector2 ClampPositionInWalkableArea(Vector2 position) {
+            var y = Mathf.Clamp(position.y, MinY, MaxY);
+            return new Vector2(position.x, y);
         }
     }
 }
