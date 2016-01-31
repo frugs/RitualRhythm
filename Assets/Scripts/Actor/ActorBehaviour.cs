@@ -26,6 +26,9 @@ namespace RitualRhythm.Actor {
 
         protected void UpdateAnimationState(ActorAnimationState state) {
             transform.Find("Arm").gameObject.SetActive(state == ActorAnimationState.Attacking);
+            if (state == ActorAnimationState.Attacking) {
+                GetComponent<Animator>().SetTrigger("Attack");
+            }
 
             if (state == ActorAnimationState.Death) {
                 Destroy(gameObject);
